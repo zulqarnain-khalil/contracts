@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: New feature
+  version: "1"
+paths:
+  /api/v1/email-addresses/test1@gmail.com,test2@gmail.com,test5@gmail.com:
+    get:
+      summary: "GET /api/v1/email-addresses/test1@gmail.com,test2@gmail.com,test5@gmail.com?filter=emailsWithCampaignInteraction&sourceSystemCampaignId=MARKETING1&sourceSystemCampaignMessageId=MARKETING1&sourceSystemId=2&campaignMessageSourceSystemId=2"
+      parameters:
+        - name: "filter"
+          in: "query"
+          required: true
+          schema:
+            type: string
+          examples:
+            200_OKAY:
+              value: "emailsWithCampaignInteraction"
+        - name: sourceSystemCampaignId
+          in: query
+          required: true
+          schema:
+            type: string
+          examples:
+            200_OKAY:
+              value: MARKETING1
+        - name: sourceSystemId
+          in: query
+          required: true
+          schema:
+            type: number
+          examples:
+            200_OKAY:
+              value: 2
+        - name: sourceSystemCampaignMessageId
+          in: query
+          required: true
+          schema:
+            type: string
+          examples:
+            200_OKAY:
+              value: MARKETING1
+        - name: campaignMessageSourceSystemId
+          in: query
+          required: true
+          schema:
+            type: number
+          examples:
+            200_OKAY:
+              value: MARKETING1
+        - name: account-id
+          in: header
+          required: true
+          schema:
+            type: string
+          examples:
+            200_OKAY:
+              value: account1
+        - name: agent-id
+          in: header
+          required: true
+          schema:
+            type: string
+          examples:
+            200_OKAY:
+              value: xyz
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          examples:
+            200_OKAY:
+              value: Basic Zm9yZ2U6Rm44NGRzUS9GQTBRazFSR05lTzd3U2l0
+      responses:
+        "200":
+          description: "GET /api/v1/email-addresses/test1@gmail.com,test2@gmail.com,test5@gmail.com?filter=emailsWithCampaignInteraction&sourceSystemCampaignId=MARKETING1&sourceSystemCampaignMessageId=MARKETING1&sourceSystemId=2&campaignMessageSourceSystemId=2"
+          headers:
+            Date:
+              required: true
+              schema:
+                type: string
+            Keep-Alive:
+              required: true
+              schema:
+                type: string
+            Connection:
+              required: true
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBody"
+components:
+  schemas:
+    ResponseBody:
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            type: string
